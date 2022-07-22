@@ -1,0 +1,72 @@
+<modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" [cssClass]="cssClass" #modal>
+       
+            <modal-header>
+                  <button type="submit"  class="btn btn-default" style="float:right" (click)="printFunction()">Print</button>
+            </modal-header>
+            <modal-body class="printPreview" id="printPreview">
+                    <div   class="attendnce-preview-con">
+                        <div class="report-header">
+                            <h3>KERALA STATE YOUTH WELFARE BOARD(KSYWB)</h3>
+                            <h4>ATTENDANCE REPORT FOR THE MONTH OF {{strMonth}}</h4>
+                        </div>
+                        <div *ngFor="let employee of attendanceData; let i=index" [attr.data-index]="i" class="report_body">
+                            <div class="report-employee">
+                                <h4>NAME:<b>{{employee.name}}</b></h4>
+                                 <h4>DESIGNATION:<b>{{employee.Designation}}</b></h4>
+                                <!-- <h4>Code:0002</h4>-->
+                            </div>
+                            <div class="report-employee-attendance">
+                                <!--<table class="attendance_table" >
+                                    <thead>-->    
+                                    <div>      
+                                    <div class="attend-coloumn" *ngFor="let attends of employee.attnds; let i=index" [attr.data-index]="i">
+                                                    <div>{{i+1}}</div> 
+                                                   <!-- <div class="hor-line"></div>-->
+                                           <!-- <div  class="workingday">  -->
+                                                    <div class="width_100 height_100per">                                                   
+                                                        <div class="daysanfn border_top">
+                                                            <div class="status" >
+                                                            <h4 *ngIf="attends">{{(attends.ENT.status)}}</h4>
+                                                            </div>                                                       
+                                                        </div>
+                                                       <!-- <div class="hor-line"></div>-->
+                                                        <div class="daysanfn border_top">
+                                                            <div class="status">
+                                                            <h4 *ngIf="attends">{{(attends.EXT.status)}}</h4>
+                                                            </div>                                                                                                         
+                                                        </div>
+                                                    </div>
+                                                <!--</div> -->
+                                        </div>         
+                                  </div>
+                                     <!-- </thead>
+                                    <tbody> </tbody>
+                                </table>-->
+                                <div style="clear: both;"></div>
+                                <div class="leavesummary">
+                                    <label>CL (Before): {{ employee.CLBefore}}; CL(Total): {{ employee.CLAfter}}; LT (Before) : {{employee.LTBefore}}; LT (Total): {{employee.LTAfter}};
+                                        CML: {{employee.CML}}; EL: {{employee.EL}}; HPL: {{employee.HPL}}; LWA: {{employee.LWA}} LWAM: {{employee.LWAM}}
+                                    </label>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="signature">
+                            <p>Member Secretory</p>
+                            <p>Signature</p>
+                        </div>
+
+                    </div>
+
+
+
+
+                     
+            </modal-body>
+            <modal-footer>                
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>             
+            </modal-footer>
+      
+</modal>
+<!--[disabled]="!modalForm.valid"-->

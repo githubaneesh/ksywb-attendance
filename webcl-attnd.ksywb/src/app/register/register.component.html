@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+      <div class="col-lg-6 col-md-6 leftCol">
+          <h1>Welcome to the registration page for Alumni</h1>
+         <br/>
+          <h4>Any person who has passed out as a student of Govt Arts college, Trivandrum is viable to register as Alumni.Please take a moment to fill out the form below.</h4>
+
+        <br/>
+        <div class="social-icon-con">
+            <ul>
+              <li><img src="../../assets/icon/socialmedia_icon/fb.jpg"></li>
+              <li><img src="../../assets/icon/socialmedia_icon/tw.jpg"></li>
+              <li><img src="../../assets/icon/socialmedia_icon/go.jpg"></li>
+              <li><img src="../../assets/icon/socialmedia_icon/in.jpg"></li>
+            </ul>
+          </div>
+      </div>
+    <div class="col-lg-6 col-md-6 rightCol">
+      <div class="form-container">
+      <form #f="ngForm" novalidate (ngSubmit)="save(f.valid)" >
+        <div class="form-group">
+
+          <input type="text" class="form-control" placeholder="Name"
+                 name="name" [(ngModel)]="user.name"
+                 #name="ngModel" required>
+          <small [hidden]="name.valid || (name.pristine && !f.submitted)" class="text-danger">
+            Name is required .
+          </small>
+          <!--<pre>{{name.errors | json}}</pre>-->
+        </div>
+        <div class="form-group">
+
+          <input type="text" class="form-control" placeholder="Mobile No"
+                 name="mobileno" [(ngModel)]="user.mobile"
+                 #mobile="ngModel" required minlength="10">
+          <small [hidden]="mobile.valid || (mobile.pristine && !f.submitted)" class="text-danger">
+           Mobile number is required .
+          </small>
+          <!--<pre>{{name.errors | json}}</pre>-->
+        </div>
+        <div class="form-group">
+
+          <input type="text" class="form-control"
+                 name="email" [(ngModel)]="user.email" placeholder="Mail id"
+                 #email="ngModel" required minlength="10">
+          <small [hidden]="email.valid || (email.pristine && !f.submitted)" class="text-danger">
+            Email ID is required .
+          </small>
+          <!--<pre>{{name.errors | json}}</pre>-->
+        </div>
+        <div class="form-group datepicker_container">
+          <div class="from_date">
+            <small>From</small>
+            <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged('from',$event)"></my-date-picker>
+          </div>
+          <div class="to_date">
+            <small>To</small>
+            <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onDateChanged('to',$event)"></my-date-picker>
+          </div>
+        </div>
+        <div class="form-group">
+          <country-dropdown (countrySelected)="countrySelected($event)"></country-dropdown>
+        </div>
+        <div class="form-group">
+          <photoupload  (fileUploaded)="fileUploaded($event)"></photoupload>
+        </div>
+
+        <!--image-upload [buttonCaption]="'Upload photo'" [dropBoxMessage]="''" [max]="1"  ></image-upload-->
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Submit</button>
+            <button class="btn btn-default">Cancel</button>
+          </div>
+
+      </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</div>

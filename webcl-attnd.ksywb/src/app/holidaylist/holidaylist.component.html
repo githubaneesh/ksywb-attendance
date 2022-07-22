@@ -1,0 +1,40 @@
+<div class="container">
+<div class="row margin_top_10">
+        <div> <a (click)="navigateToURL('addholidays')"><button class="addempBtn" data-toggle="tooltip" title="Add Holiday"><i class="fa fa-plus-square" aria-hidden="true"></i></button></a></div>
+  </div>
+  <div class="row">
+        <div>
+            <h4>HOLIDAY LIST</h4>
+        </div>
+        <div class="officeemp-box-con" >            
+            <div class="employeedetails_con">
+            <table class="employeelist">
+                       <thead>
+                        <tr>
+                         <th scope="col">Sl No</th>
+                          <th scope="col">Date</th>                          
+                          <th scope="col">Holiday Name</th>
+                          <th scope="col">Year</th>
+                          <th scope="col">Time</th>
+                          <th scope="col">Action</th>                          
+                         </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let holiday of holidayList;let i = index">
+                            <td>{{ i+1 }}</td>
+                            <td>{{ holiday.date.toString().substring(6,8)+"-"+holiday.date.toString().substring(4,6)+"-"+ holiday.date.toString().substring(0,4) }}</td>
+                            <td>{{ holiday.holiday.name }}</td>                            
+                             <td>{{ holiday.year }}</td> 
+                            <td>                                   
+                                <p *ngIf="holiday.time=='fn'">For Noon</p>
+                                <p *ngIf="holiday.time=='an'">After Noon</p>
+                                <p *ngIf="holiday.time=='full'">Full Day</p>
+                            </td> 
+                            <td *ngIf="holiday._id"><button (click)="deleteHoliday(holiday)" data-toggle="tooltip" title="Delete Holiday">Delete</button> </td>
+                        </tr>
+                    </tbody>
+            </table>
+            </div>
+        </div> 
+ </div>
+</div>

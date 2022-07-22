@@ -1,0 +1,70 @@
+<div class="container">
+<div class="row margin_top_10">
+         <div class="col-lg-3 col-md-3 Office-label" >
+              <form style="padding:18px;max-width:800px;" [formGroup]="formGroup">
+                    <ng-select *ngIf="arrOffice"
+                            [options]="arrOffice"
+                            [multiple]="false"
+                            [noFilter]=10
+                            placeholder="Select Office"
+                            formControlName="selectOffice"
+                            (selected)="officeSelected($event)"
+                        >
+                    </ng-select>
+                    </form>
+         </div>
+         <div class="col-lg-9 col-md-9"> <a (click)="navigateToURL('addemployee')"><button class="addempBtn" data-toggle="tooltip" title="Add Employee"><i class="fa fa-plus-square" aria-hidden="true"></i></button></a></div>
+  </div>
+  <div class="row">
+        <!--<div class="col-md-3">
+                 <div class="office-box-con">MAIN OFFICE</div>
+        </div>
+        <div class="col-md-9 officeemp-box-con" >
+            -->
+            <div class="oficeDescription">
+                <h4>{{ officeDescription }}</h4>
+            </div>
+           <div class="employeedetails_con">
+            <table class="employeelist">
+                       <thead>
+                        <tr>
+                         <th scope="col">Sl No</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Emp Id</th>
+                          <th scope="col">Designation</th>
+                          <th scope="col">Employee Code</th>
+                          <th scope="col">Action</th>
+                          <!-- <th scope="col">Email</th>
+                            <th scope="col">Address</th>-->
+                         </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let emp of empList;let i = index">
+                            <td>{{ i+1 }}</td>
+                            <td *ngIf="!emp.edit">{{ emp.name }}</td>
+                            <td *ngIf="!emp.edit">{{ emp.userid }}</td>
+                            <td *ngIf="!emp.edit">{{ emp.designation }}</td>
+                             <td *ngIf="!emp.edit">{{ emp.ein }}</td>
+
+                          <td *ngIf="emp.edit"> <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="emp.name" #name="ngModel" required></td>
+                          <td *ngIf="emp.edit"> <input type="text" class="form-control" placeholder="Emp Id" name="empid" [(ngModel)]="emp.userid" #name="ngModel"></td>
+                          <td *ngIf="emp.edit"> <input type="text" class="form-control" placeholder="Designation" name="designation" [(ngModel)]="emp.designation" #name="ngModel" required></td>
+                          <td *ngIf="emp.edit"><input type="number" class="form-control" placeholder="Pin" name="pin" [(ngModel)]="emp.ein" #name="ngModel" required></td>
+
+                          <td>
+                               <button data-toggle="tooltip" title="Edit" *ngIf="!emp.edit"  (click)="updateEmp(emp)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                               <button data-toggle="tooltip" title="Delete"  (click)="deleteEmp(emp)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                               <button data-toggle="tooltip" title="Save"  *ngIf="emp.edit " (click)="save(emp)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                               <button  data-toggle="tooltip" title="Cancel" *ngIf="emp.edit" (click)="cancel(emp,i)"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                              <div *ngIf="msg!=''">{{ msg }}</div>
+                             </td>
+                            <!--<td>{{ emp.user.email }}</td>-->
+                            <!--<td>{{ emp.address }}</td>-->
+                        </tr>
+
+                       </tbody>
+            </table>
+            </div>
+       <!-- </div>-->
+ </div>
+</div>

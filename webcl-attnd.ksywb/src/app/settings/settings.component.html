@@ -1,0 +1,642 @@
+<section id="addemployee" class="sections lightbg">
+  <div class="container padding-top-20">
+      <div class="row">
+        <div class="col-md-12 col-lg-12"  >
+          <div>
+              <i class="fa fa-cog fa-2x" aria-hidden="true"></i><h2 style="display:inline-block">&nbsp;Settings</h2>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+          <div *ngIf="isOfficeIdPresent && office">
+              <div *ngIf="!isOfficeEdit" class="col-md-12 col-lg-12">
+                  <div class="form-container">
+
+                            <div class="form-group"> <!--Name-->
+                              <h4>Name : {{office.name}}</h4>
+
+                            </div>
+                            <div class="form-group"> <!--Address-->
+                              <h4>Address : {{office.address}}</h4>
+
+                             </div>
+                            <div class="form-group"> <!--Address-->
+                              <h4>Office Stage Id : {{office.stgid}}</h4>
+
+                             </div>
+                            <div class="form-group" *ngIf="office.maxFNTime !='null' || office.maxFNTime !=''">
+                                <h4>Max Entry Time : {{office.maxFNTime }}</h4>
+
+                            </div>
+                            <!--div class="form-group" *ngIf="office.maxFNTime !='null' ||office.maxFNTime !='' ">
+                                <h4>Max Exit Time : {{office.maxFNTime  }}</h4>
+                            </div-->
+                            <div class="form-group" *ngIf="office.from !='null' || office.from !='' ">
+                                <h4>From Time : {{office.from  }}</h4>
+                            </div>
+                            <div class="form-group" *ngIf="office.to !='null' || office.to !='' ">
+                                <h4>To Time : {{office.to  }}</h4>
+                            </div>
+                            <div class="form-group" *ngIf="office.latepermission !='null' || office.latepermission !='' ">
+                                <h4>Late Permission : {{office.latepermission  }}</h4>
+                            </div>
+                            <div class="form-group" *ngIf="office.lunchbreak !='null' || office.lunchbreak !='' ">
+                                <h4>Lunch Break : {{office.lunchbreak  }}</h4>
+                            </div>
+                            <div class="form-group" *ngIf="office.earlypermission !='null' || office.earlypermission !='' ">
+                                <h4>Early Permission : {{office.earlypermission  }}</h4>
+                            </div>
+
+                            <!--div class="form-group">
+                                <h4>Mode</h4>
+                                <div *ngIf="office.mode==0" > Verify </div>
+                                <div *ngIf="office.mode==1"  > Attendance </div>
+                                <div *ngIf="office.mode==2" > Enroll </div>
+                            </div-->
+                            <div class="form-group">
+                                <button (click)="isOfficeEdit=true">Edit</button>
+                            </div>
+
+
+                    </div>
+              </div>
+              <div *ngIf="isOfficeEdit" class="col-md-12 col-lg-12">
+                <div class="form-container">
+                    <div class="registration-title">  <h4>UPDATE OFFICE</h4> </div>
+                        <form role="form" #f="ngForm" novalidate (ngSubmit)="UpdateOffice(f.valid)">
+
+                          <div class="form-group"> <!--Name-->
+                            <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                <h4>Name : </h4>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="text" class="form-control" placeholder="Office name"  name="name" [(ngModel)]="office.name" #name="ngModel" required>  <label class="namewarning"></label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group"> <!--Address-->
+                            <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                <h4>Address : </h4>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                <textarea rows="4" cols="50" class="form-control" placeholder="Address"   name="name" [(ngModel)]="office.address" #name="ngModel" required> </textarea>
+                              </div>
+                            </div>
+
+
+
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                <h4>Office Stage Id : </h4>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input type="text" class="form-control" placeholder="Office Stage Id"  name="officeId" [(ngModel)]="office.stgid" #name="ngModel">
+                              </div>
+                            </div>
+
+                          </div>
+                          <!--div class="form-group">
+                            <div class="row">
+
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h4>Max FN:</h4>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form class="form-inline" style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="hourArray"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Hour"
+                                    formControlName="selectMaxFNHr"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form class="form-inline" style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="minsArr"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Min"
+                                    formControlName="selectMaxFNMin"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                            </div>
+                          </div-->
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h4>Max AN:</h4>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="hourArray"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Hour"
+                                    formControlName="selectMinANHr"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="minsArr"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Min"
+                                    formControlName="selectMinANMin"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h4>From:</h4>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="hourArray"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Hour"
+                                    formControlName="selectFromHr"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="minsArr"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Min"
+                                    formControlName="selectFromMin"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h4>To:</h4>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="hourArray"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Hour"
+                                    formControlName="selectToHr"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="minsArr"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Min"
+                                    formControlName="selectToMin"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h4>Late Permission:</h4>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="hourArray"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Hour"
+                                    formControlName="selectLatePermissionHr"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="minsArr"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Min"
+                                    formControlName="selectLatePermissionMin"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h4>Lunch Break:</h4>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="lunchHourArray"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Hour"
+                                    formControlName="selectLunchBreakHr"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="minsArr"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Min"
+                                    formControlName="selectLunchBreakMin"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <h4>EP:</h4>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="hourArray"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Hour"
+                                    formControlName="selectEarlyPermissionHr"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-4">
+                                <form style="max-width:800px;" [formGroup]="formGroup">
+                                  <ng-select
+                                    [options]="minsArr"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select Min"
+                                    formControlName="selectEarlyPermissionMin"
+                                  >
+                                  </ng-select>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!--div class="form-group">
+                              <h4>Select Mode</h4>
+                              <div class="row">
+                                  <div class="col-lg-4 col-md-4">
+                                         <form style="padding:18px;max-width:800px;" [formGroup]="formGroup">
+                                              <ng-select
+                                                    [options]="modesArray"
+                                                    [multiple]="false"
+                                                    [noFilter]=10
+                                                    placeholder="Select Mode"
+                                                    formControlName="selectMode"
+                                                    selected="modeSlected($event)"
+                                                 >
+                                              </ng-select>
+                                        </form>
+                                  </div>
+
+                              </div>
+                          </div-->
+                          <div class="form-group">
+                              <div class="text-danger">{{ strMessage }}</div>
+                              </div>
+                            <div class="form-group">
+                              <button type="submit" class="btn btn-default">Submit</button>
+                              <button type="button" class="btn btn-default" (click)="isOfficeEdit=false">Cancel</button>
+                             </div>
+                        </form>
+                  </div>
+                </div>
+
+          </div>
+          <div *ngIf="!isOfficeIdPresent && companies">
+                      <div class="form-container" *ngIf="!isCompanyEdit">
+                          <div class="form-group">
+                                {{companies.name}}
+                              </div>
+                              <div class="form-group" *ngIf="companies.maxFNTime !='null' || companies.maxFNTime !=''">
+                                <h4>Max Entry Time : {{companies.maxFNTime }}</h4>
+
+                              </div>
+                              <!--div class="form-group" *ngIf="companies.maxANTime !='null' ||companies.maxANTime !='' ">
+                                <h4>Max Exit Time : {{companies.maxANTime  }}</h4>
+                              </div-->
+                              <div class="form-group" *ngIf="companies.from !='null' || companies.from !='' ">
+                                <h4>From Time : {{companies.from  }}</h4>
+                              </div>
+                              <div class="form-group" *ngIf="companies.to !='null' || companies.to !='' ">
+                                <h4>To Time : {{companies.to  }}</h4>
+                              </div>
+                              <div class="form-group" *ngIf="companies.latepermission !='null' || companies.latepermission !='' ">
+                                <h4>Late Permission : {{companies.latepermission  }}</h4>
+                              </div>
+                              <div class="form-group" *ngIf="companies.lunchbreak !='null' || companies.lunchbreak !='' ">
+                                <h4>Lunch Break : {{companies.lunchbreak  }}</h4>
+                              </div>
+                              <div class="form-group" *ngIf="companies.earlypermission !='null' || companies.earlypermission !='' ">
+                                <h4>Early Permission : {{companies.earlypermission  }}</h4>
+                              </div>
+
+
+
+                              <div class="form-group">
+                                <button (click)="isCompanyEdit=true">Edit</button>
+                              </div>
+
+                          </div>
+                    </div>
+                    <div *ngIf="isCompanyEdit" class="form-container">
+                    <form role="form" #f="ngForm" novalidate (ngSubmit)="UpdateCompany(f.valid)">
+                          <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Company name"  name="name" [(ngModel)]="companies.name" #name="ngModel" required>  <label class="namewarning"></label>
+                          </div>
+                      <div class="form-group">
+                        <div class="row">
+
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h4>Max FN:</h4>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form class="form-inline" style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="hourArray"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Hour"
+                                formControlName="selectMaxFNHr"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form class="form-inline" style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="minsArr"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Min"
+                                formControlName="selectMaxFNMin"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      <!--div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h4>Max AN:</h4>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="hourArray"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Hour"
+                                formControlName="selectMinANHr"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="minsArr"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Min"
+                                formControlName="selectMinANMin"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                        </div>
+                      </div-->
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h4>From:</h4>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="hourArray"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Hour"
+                                formControlName="selectFromHr"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="minsArr"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Min"
+                                formControlName="selectFromMin"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h4>To:</h4>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="hourArray"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Hour"
+                                formControlName="selectToHr"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="minsArr"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Min"
+                                formControlName="selectToMin"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h4>Late Permission:</h4>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="hourArray"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Hour"
+                                formControlName="selectLatePermissionHr"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="minsArr"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Min"
+                                formControlName="selectLatePermissionMin"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h4>Lunch Break:</h4>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="lunchHourArray"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Hour"
+                                formControlName="selectLunchBreakHr"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="minsArr"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Min"
+                                formControlName="selectLunchBreakMin"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <h4>EP:</h4>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="hourArray"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Hour"
+                                formControlName="selectEarlyPermissionHr"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <form style="max-width:800px;" [formGroup]="formGroup">
+                              <ng-select
+                                [options]="minsArr"
+                                [multiple]="false"
+                                [noFilter]=10
+                                placeholder="Select Min"
+                                formControlName="selectEarlyPermissionMin"
+                              >
+                              </ng-select>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                          <div class="form-group">
+                              <div class="text-danger">{{ strMessage }}</div>
+                              </div>
+                            <div class="form-group">
+                              <button type="submit" class="btn btn-default">Submit</button>
+                              <button type="button" class="btn btn-default" (click)="isCompanyEdit=false">Cancel</button>
+                              </div>
+                      </form>
+                      </div>
+
+
+
+      </div>
+      </div>
+
+
+
+
+
+
+
+</section>
+
+

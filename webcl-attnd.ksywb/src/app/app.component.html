@@ -1,0 +1,47 @@
+<div class="" >
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" style="margin: auto">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="attendance"><img src="../assets/img/logo/logo.gif"/></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="userLoggedIn && isSuperAdmin() || isAdmin()"><a (click)="navigateToURL('settings')" style="color:black;cursor:pointer"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></a></li>
+            <li style="cursor: pointer;" *ngIf="userLoggedIn">
+              <div class="dropdown">
+                <button class="dropbtn"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></button>
+                <div class="dropdown-content">
+                  <a (click)="navigateToURL('profile')"><i class="fa fa-user"  aria-hidden="true"></i>&nbsp;&nbsp;   Profile</a>
+                  <a (click)="navigateToURL('logout')"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp; Logout</a>
+                </div>
+              </div>
+            </li>
+       </ul>
+      </div><!-- /.navbar-collapse -->
+      <div class="navbar-right links"  *ngIf="userLoggedIn">
+           <a (click)="navigateToURL('attendance')"><div>Attendance</div></a>
+           <a (click)="navigateToURL('employeelist')"><div>Employees</div></a>
+           <a *ngIf="isSuperAdmin() || isAdmin() " (click)="navigateToURL('userlist')"><div>Users</div></a>
+           <a *ngIf="isSuperAdmin() || isAdmin() " (click)="navigateToURL('officelist')"><div>Offices</div></a>
+           <a (click)="navigateToURL('holidaylist')"><div>Holidays</div></a>
+       </div>
+    </div><!-- /.container-fluid -->
+  </nav>
+
+</div>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+</footer>

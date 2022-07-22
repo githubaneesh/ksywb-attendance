@@ -1,0 +1,297 @@
+<section id="features" class="sections lightbg">
+  <div class="container reg-title">
+    <div class="row">
+      <div class="col-lg-2 col-md-2">
+        <!--<button class="navButtons" (click)="prevButtonClickhandler()">PREVOIUS</button>--></div>
+      <div class="col-lg-5 col-md-5">
+        <div class="row">
+          <div class="col-lg-2 col-md-2">
+            <button class="navButtons prev_btn" (click)="prevButtonClickhandler()"></button>
+          </div>
+          <div class="col-lg-8 col-md-8" *ngIf="str_month"><h2>{{str_month+' '+str_year }}</h2></div>
+          {{ checkMonth(str_month ,str_year )}}
+          <div class="col-lg-2 col-md-2">
+            <button class="navButtons next_btn" (click)="nextButtonClickhandler()"></button>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-lg-5 col-md-5">
+
+
+        <div class="width_80" style="display: block;float: left">
+          <button  class="navButtons import_ex_btn" (click)="importJSONBtnClickhandler()"></button>
+          <label class="">Import</label>
+        </div>
+        <!--div class="width_80" style="display: block;float: left">
+          <button class="navButtons export_ex_btn" (click)="exportExcelBtnClickhandler()"></button>
+          <label class="">Export</label>
+        </div-->
+        <div class="width_80" style="display: block;float: left">
+          <button class="navButtons add_att_btn" (click)="attendanceAddBtnClickhandler()"></button>
+          <label class="">Add attendance</label>
+        </div>
+        <div class="width_80" style="display: block;float: left">
+          <button class="navButtons add_att_btn" (click)="leaveAddBtnClickhandler()"></button>
+          <label class="">Add Leaves</label>
+        </div>
+        <div class="width_80" style="display: block;float: left">
+          <button class="navButtons print_btn" (click)="printBtnClickhandler()"></button>
+          <label class="">Print</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+ <!-- <div class="table-containers max_height_500">-->
+     <!--<div class="left-table-con tableWrapper">
+        <table class="register">
+            <thead>
+            <tr>
+              <th scope="col">Sl No</th>
+              <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let emp of ArrEmp;let i = index" [attr.data-index]="i">
+              <td>{{i+1}}</td>
+              <td>{{emp.name}}</td>
+            </tr>
+
+          </table>
+      </div>-->
+  <div class="container text-center">
+   <div class="row">
+      <div class="col-md-4 col-lg-4 form-group">
+                 <!-- <label>Select Office</label>-->
+                    <form style="padding:18px;max-width:800px;" [formGroup]="formGroup">
+                    <ng-select *ngIf="arroffices"
+                            [options]="arroffices"
+                            [multiple]="false"
+                            [noFilter]=10
+                            placeholder="Select Office"
+                            formControlName="selectOffice"
+                            (selected)="officeSelected($event)"
+                        >
+                    </ng-select>
+                    </form>
+            </div>
+   </div>
+
+
+    <!-- Example row of columns -->
+    <div class="row tableWrapper" [hidden]="!bShowCalender">
+        <div class="left-table-con">
+        <table class="register">
+            <thead>
+            <tr>
+              <th scope="col">Sl No</th>
+              <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let emp of ArrEmp;let i = index" [attr.data-index]="i">
+              <td>{{i+1}}</td>
+              <td>{{emp.name}}</td>
+            </tr>
+
+          </table>
+      </div>
+      <div class="scroll max_width_800 main-table-con" id="scrollableTable">
+      <table class="register" id="register">
+        <thead>
+        <tr>
+          <th scope="col">Sl No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Emp Code</th>
+          <th scope="col">Designation</th>
+          <th>LT</th>
+          <th>CL</th>
+         <!-- <th *ngFor="let objDate of daysInMonth"
+              (click)="(isAfterCurrentDate(objDate)&&objDate.type!='hd')?holidayClickhandler($event,objDate):''"
+              class="{{(objDate.isCurrentDay)?'currentDay':objDate.class}}"><p>{{objDate.label}}</p>{{objDate.date}}
+          </th>-->
+          <th *ngFor="let objDate of daysInMonth"
+              class="{{(objDate.isCurrentDay)?'currentDay':objDate.class}}"><p>{{objDate.label}}</p>{{objDate.date}}
+          </th>
+          <th>LT</th>
+          <th>CL</th>
+          <th>HPL</th>
+          <th>CML</th>
+          <th>EL</th>
+          <th>LWA</th>
+          <th>LWAM</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let emp of ArrEmp;let i = index" [attr.data-index]="i"> <!--employee attendance record-->
+           <td>{{i+1}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.ein}}</td>
+          <td>{{emp.designation}}</td>
+          <td>{{emp.LTBefore}}</td>
+          <td>{{emp.CLbefore}}</td>
+          <!--table row-->
+          <td *ngFor="let attends of emp.attendenceArr; let i=index" [attr.data-index]="i">
+            <div [ngSwitch]="daysInMonth[i].class">
+              <div *ngSwitchCase="'holiday'" class="holiday"> <!--holiday-->
+                <div [ngSwitch]="daysInMonth[i].time">
+                  <div class="full-holiday" *ngSwitchCase="'full'"><h4>H</h4></div> <!--full Holiday-->
+                  <div class="fn-holiday" *ngSwitchCase="'fn'"> <!-- For noon holiday-->
+                    <div class="daysanfn fornoon">
+                      <h4>H</h4>
+                    </div>
+                    <div class="hor-line"></div>
+                    <div *ngIf="attends" class="daysanfn afternoonworkingday">
+                      <div class="status" (click)="leaveUpdateClickhandler($event,attends,'AN',emp,daysInMonth[i])">
+                        <h4>{{(attends.an)}}</h4>
+                      </div>
+                      <div class="ver-line"></div>
+                      <div class="time">
+                        <div class="ent" (click)="timeUpdateClickHandler($event,attends,'ANENT',emp,daysInMonth[i])">
+                          <label *ngIf="attends">{{ attends.anEnttime}}</label>
+                         <!--<label>{{getTimeAsPerAttendanceStatus(attends.ANStatus,attends.ENT,'an','ent')}}</label>-->
+                        </div>
+                        <div class="hor-line-1p"></div>
+                        <div class="ext" (click)="timeUpdateClickHandler($event,attends,'ANEXT',emp,daysInMonth[i])">
+                            <label *ngIf="attends">{{ attends.anExttime}}</label>
+                       <!--<label>{{getTimeAsPerAttendanceStatus(attends.ANStatus,attends.EXT,'an','ext')}}</label>-->
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="attends==null" class="daysanfn afternoon">
+                      <div class="status">
+                        <h4></h4>
+                      </div>
+                      <!--<div class="ver-line"></div>-->
+                      <div class="time">
+                        <h4></h4>
+                      </div>
+                    </div>
+                  </div><!-- For noon holiday-->
+                  <div class="an-holiday" *ngSwitchCase="'an'">    <!-- after noon holiday-->
+                    <div *ngIf="attends" class="daysanfn fornoonworkingday">
+                      <div class="status" (click)="leaveUpdateClickhandler($event,attends,'FN',emp,daysInMonth[i])">
+                        <h4>{{(attends.fn)}}</h4>
+                      </div>
+                      <div class="ver-line"></div>
+                      <div class="time">
+                        <div class="ent" (click)="timeUpdateClickHandler($event,attends,'FNENT',emp,daysInMonth[i])">
+                          <!--<label>{{getTimeAsPerAttendanceStatus(attends.FNStatus,attends.ENT,'fn','ent')}}</label>-->
+                           <label *ngIf="attends">{{attends.fnEnttime }}</label>
+                        </div>
+                        <div class="hor-line-1p"></div>
+                        <div class="ext" (click)="timeUpdateClickHandler($event,attends,'FNEXT',emp,daysInMonth[i])">
+                           <label>{{attends.fnExttime }}</label>
+                         <!--<label>{{getTimeAsPerAttendanceStatus(attends.FNStatus,attends.EXT,'fn','ext')}}</label>-->
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="attends==null" class="daysanfn fornoon">
+                      <div class="status">
+                        <h4></h4>
+                      </div>
+                      <!--<div class="ver-line"></div>-->
+                      <div class="time">
+                        <h4></h4>
+                      </div>
+                    </div>
+
+                    <!--<div class="hor-line"></div>-->
+                    <div class="daysanfn afternoon">
+                      <h4>H</h4>
+                    </div>
+                  </div>
+                </div>  <!-- after noon holiday-->
+              </div>  <!--holiday-->
+              <div *ngSwitchCase="'workingday'" class="workingday">  <!--workingday-->
+                <div class="width_100 height_100per">
+                  <!--[ngStyle]="{'background-color':getBgColor(getAttendanceStatus(attends.FNStatus))}"-->
+                  <div class="daysanfn fornoon">
+                    <div class="status" (click)="leaveUpdateClickhandler($event,attends,'FN',emp,daysInMonth[i]);">
+                      <h4 *ngIf="attends">{{(attends.fn)}}</h4>
+                    </div>
+                    <div class="ver-line"></div>
+                    <div class="time">
+                      <div class="ent" (click)="timeUpdateClickHandler($event,attends,'FNENT',emp,daysInMonth[i])">
+                         <label *ngIf="attends">{{attends.fnEnttime }}</label>
+                      <!-- <label   *ngIf="attends">{{getTimeAsPerAttendanceStatus(attends.FNStatus,attends.ENT,"fn","ent")}}</label>-->
+                      </div>
+                      <div class="hor-line-1p"></div>
+                      <div class="ext" (click)="timeUpdateClickHandler($event,attends,'FNEXT',emp,daysInMonth[i])">
+                          <label *ngIf="attends">{{attends.fnExttime }}</label>
+                        <!--<label   *ngIf="attends">{{getTimeAsPerAttendanceStatus(attends.FNStatus,attends.EXT,"fn","ext")}}</label>-->
+                      </div>
+                    </div>
+                    <!--<label>FN</label>-->
+                  </div>
+                  <div class="hor-line"></div>
+                  <!-- [ngStyle]="{'background-color':getBgColor(getAttendanceStatus(attends.ANStatus))}"-->
+                  <div class="daysanfn afternoon">
+                    <div class="status" (click)="leaveUpdateClickhandler($event,attends,'AN',emp,daysInMonth[i])">
+                      <h4 *ngIf="attends">{{(attends.an)}}</h4>
+                    </div>
+                    <div class="ver-line"></div>
+                    <div class="time" >
+                      <div class="ent" (click)="timeUpdateClickHandler($event,attends,'ANENT',emp,daysInMonth[i])">
+                         <label *ngIf="attends">{{attends.anEnttime }}</label>
+                        <!--<label *ngIf="attends">{{getTimeAsPerAttendanceStatus(attends.ANStatus,attends.ENT,"an","ent")}}</label>-->
+                      </div>
+                      <div class="hor-line-1p"></div>
+                      <div class="ext" (click)="timeUpdateClickHandler($event,attends,'ANEXT',emp,daysInMonth[i])">
+                         <label *ngIf="attends">{{attends.anExttime }}</label>
+                       <!--<label  *ngIf="attends">{{getTimeAsPerAttendanceStatus(attends.ANStatus,attends.EXT,"an","ext")}}</label>-->
+                      </div>
+                    </div>
+                    <!--<label>AN</label>-->
+                  </div>
+                </div>
+              </div><!--workingday-->
+            </div>
+
+          </td>
+          <td>{{emp.LTtotal}}</td>
+          <td [ngClass]="{'clgreater': emp.CLtotal>=20 }">{{emp.CLtotal}}</td>
+          <td>{{emp.HPL}}</td>
+          <td>{{emp.CML}}</td>
+          <td>{{emp.EL}}</td>
+          <td>{{emp.LWA}}</td>
+          <td>{{emp.LWAM}}</td>
+        </tr><!--employee record-->
+
+        <tr *ngIf="!ArrEmp">
+          No Data available
+        </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="row tableWrapper" [hidden]="bShowCalender">
+        <img style="margin-top: 180px" src="../../assets/img/loading.gif"/>
+    </div>
+
+     <div [hidden]="!bShowCalender" class="row scrollbar-con">
+       <!-- <scrollbar [elementId]="scrollbarID" ></scrollbar>-->
+
+           <button class="btn startBtn" (click)="scrollToStart()"></button>
+           <button class="btn backBtn" (mousedown)="scrollToBack()" (mouseup)="stopScroll()"   ></button>
+           <button class="btn nextBtn" (mousedown)="scrollToNext()" (mouseup)="stopScroll()"></button>
+           <button class="btn endBtn"  (click)="scrollToEnd()"></button>
+     </div>
+
+  </div>
+ <!-- </div>-->
+
+</section>
+<holidaymarking-popup #hpopup (hmodalClosed)="handleHolidayPopupClosed($event)"></holidaymarking-popup>
+<anfnleave-popup [leaveOptions]="arrLeaves" [attndOptions]="arrAttendance" [employees]="ArrEmp"  (modalClosed)="leaveUpdateModelClosed($event)"></anfnleave-popup>
+<excel-popup #excelpoup (modalClosed)="excelUpdateModelClosed($event)"></excel-popup>
+<timepicker-popup (modalClosed)="timeUpdateModelClosed($event)"></timepicker-popup>
+<attendance-popup   *ngIf="ArrEmp.length>0"   [employees]="ArrEmp" (modalClosed)="attendanceAddModalClosed($event)"></attendance-popup>
+<leaveMarking-popup *ngIf="ArrEmp.length>0"  [employees]="ArrEmp" [leaves]="arrLeaves"
+                  (modalClosed)="leaveAddModalClosed($event)"></leaveMarking-popup>
+<warning-popup #warningpopup (modalCLosed)="warningModalClosed($event)"></warning-popup>
+<printpreview-popup #printpreviewModel (modalCLosed)="printpreviewModalClosed($event)"></printpreview-popup>
+
+

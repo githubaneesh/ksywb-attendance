@@ -1,0 +1,47 @@
+<div class="container">
+<div class="row margin_top_10">
+         <div class="col-lg-3 col-md-3 Office-label" >
+              <form style="padding:18px;max-width:800px;" [formGroup]="formGroup">
+                    <ng-select *ngIf="arrOffice"
+                            [options]="arrOffice"
+                            [multiple]="false"
+                            [noFilter]=10
+                            placeholder="Select Office"
+                            formControlName="selectOffice"
+                            (selected)="officeSelected($event)"
+                        >
+                    </ng-select>
+                    </form>
+         </div>
+         <div class="col-lg-9 col-md-9"> <a (click)="navigateToURL('addoffice')"><button class="addempBtn" data-toggle="tooltip" title="Add Office"><i class="fa fa-plus-square" aria-hidden="true"></i></button></a></div>
+  </div>
+  <div class="row">
+
+           <div class="employeedetails_con">
+            <table class="employeelist">
+                       <thead>
+                        <tr>
+                         <th scope="col">Sl No</th>
+                         <th scope="col">Name</th>
+                          <th scope="col">Address</th>
+                          <th scope="col" style="width:100px">Action</th>
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let office of offices;let i = index">
+                                <td>{{ i+1 }}</td>  
+                                <td>{{ office.name }}</td>  
+                                <td>{{ office.address }}</td>  
+                                <td >
+                                    <button   (click)="editOffficeclickhandler(office)" data-toggle="tooltip" title="Edit Office"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></button>
+                                </td>
+                         </tr>
+
+
+                       </tbody>
+            </table>
+            </div>
+
+ </div>
+</div>

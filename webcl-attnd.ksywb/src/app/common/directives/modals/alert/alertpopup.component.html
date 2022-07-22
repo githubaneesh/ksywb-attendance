@@ -1,0 +1,27 @@
+<modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" [cssClass]="cssClass" #modal>
+       <!-- <form #modalForm="ngForm">-->
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">New employee successfully added</h4>
+            </modal-header>
+            <modal-body>
+                   <div class="row">
+                        <div class="col-md-6 col-lg-6 body-left-col">
+                            <h4>Name :</h4>    
+                            <h4>Code :</h4>   
+                            <h4 *ngIf="user_mobile!=''">Mobile No :</h4> 
+                            <h4 *ngIf="user_email!=''" >Email :</h4> 
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                            <h4>{{user_name}}</h4>  
+                            <h4>{{user_code}}</h4>
+                            <h4 *ngIf="user_mobile!=''">{{user_mobile}}</h4>                        
+                             <h4 *ngIf="user_email!=''">{{user_email}}</h4> 
+                        </div>
+                   </div>     
+            </modal-body>
+            <modal-footer>                
+                <button type="button" class="btn btn-primary"   (click)="modal.close()">Close</button>
+            </modal-footer>
+      <!--  </form>-->
+</modal>

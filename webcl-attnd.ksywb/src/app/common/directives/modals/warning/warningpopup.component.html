@@ -1,0 +1,16 @@
+<modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" [cssClass]="cssClass" #modal>
+       <!-- <form #modalForm="ngForm">-->
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">{{title}}</h4>
+            </modal-header>
+            <modal-body>
+                   <div class="row">
+                        <h4 style="text-align: center"> {{body}}</h4>
+                   </div>     
+            </modal-body>
+            <modal-footer>                
+                <button type="button" class="btn btn-primary"   (click)="modal.close()">Close</button>
+            </modal-footer>
+      <!--  </form>-->
+</modal>

@@ -1,0 +1,60 @@
+<section id="addemployee" class="sections lightbg">
+  <div class="container padding-top-20" style="padding:50px">
+      <div class="row">
+        <div class="col-md-12 col-lg-12"  >
+          <div class="account-con">
+                <div class="clearfix">
+                  <div class="clearfix icon-con">
+                    <img src="../../assets/img/user-icon.png">
+                  </div>
+                  <div class="clearfix label-con"> <h4>{{ user.role.name}}</h4></div>
+                   <div class="clearfix label-con" style="float: right" *ngIf="!bEdit"><button style="margin:5px" (click)="editButtonClickhandler()">Edit</button></div>
+                </div>
+                <div class="clearfix details-con" *ngIf="!bEdit && user">
+                    <h4>{{ user.name}}</h4>
+                    <h4>{{ user.mobile}}</h4>
+                    <h4>{{ user.email}}</h4>
+
+                </div>
+                <div class="" *ngIf="bEdit && user ">
+                        <form role="form" #f="ngForm" novalidate (ngSubmit)="onSubmit(f.valid)">
+
+                      <!-- <div class="form-group">
+                           <input type="text" class="form-control" placeholder="Name"
+                                name="name" [(ngModel)]="user.name"
+                                #name="ngModel" required>
+                          <small [hidden]="name.valid || (name.pristine && !f.submitted)" class="text-danger">
+                            Name is required .
+                          </small>
+                        </div>-->
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="MobileNo"
+                                name="mobileno" [(ngModel)]="user.mobile"
+                                #mobileno="ngModel" required >
+                          <small [hidden]="mobileno.valid || (mobileno.pristine && !f.submitted)" class="text-danger">
+                            Employee Mobile no is required .
+                          </small>
+
+                        </div>
+                           <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Email"
+                                name="email" [(ngModel)]="user.email"
+                                #email="ngModel" required >
+                          <small [hidden]="email.valid || (email.pristine && !f.submitted)" class="text-danger">
+                            Employee Email is required .
+                          </small>
+
+                        </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-default">Submit</button>
+                          <button class="btn btn-default" (click)="cancelClickHandler()">cancel</button>
+                        </div>
+                    </form>
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+

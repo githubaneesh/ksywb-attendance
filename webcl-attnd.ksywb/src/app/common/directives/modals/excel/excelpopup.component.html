@@ -1,0 +1,22 @@
+<modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" [cssClass]="cssClass" #modal>
+        <form #modalForm="ngForm">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Select JSON</h4>
+            </modal-header>
+            <modal-body>
+                <div class="form-group">
+                <input id="myFile" accept=".json,.txt"  type="file" (change)="onChange($event)" placeholder="Upload file..."/>
+                <div class="text-danger" *ngIf="fileMessage">{{ fileMessage }}</div>
+                <div class="loader" *ngIf="fileUploading"></div>
+                <div class="image-holder" (click)="triggerOnChange()" >
+              </div>
+            </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+                <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="importBtnClickhandler()">Import</button>
+               <!-- <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="modal.close()">Import</button>-->
+            </modal-footer>
+        </form>
+</modal>

@@ -1,0 +1,32 @@
+<section id="addemployee" class="sections lightbg">
+  <div class="container padding-top-20" style="margin-top:50px">
+      <div class="row">
+        <div class="col-md-2 col-lg-2"  >
+
+            <div ><button style="width:100px" (click)="profileClickhandler()"><i class="fa fa-user fa-2x"  aria-hidden="true"></i> Profile</button></div>
+            <div ><button style="width:100px" (click)="settingsClickhandler()" ><i class="fa fa-cogs fa-2x" aria-hidden="true"></i> Settings</button></div>
+            <div ><button style="width:100px" (click)="logoutClickhandler()"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>Logout</button></div>
+         </div>
+        <div class="col-md-10 col-lg-10">
+            <div *ngIf="bProfilePage">
+                <profile ></profile>
+            </div>
+            <div *ngIf="bSettingsPage">
+                <settings></settings>
+            </div>
+            <div *ngIf="bLogouPage">
+                <logout></logout>
+              </div>
+        </div>
+
+
+
+
+      </div>
+    
+
+
+  </div>
+</section>
+ 
+

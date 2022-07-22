@@ -1,0 +1,19 @@
+ <section id="features" class="sections lightbg">
+            <div class="container text-center">
+                <!-- Example row of columns -->
+                <div class="row">
+
+                <div class="login-page">
+                             <div *ngIf="!userLoggedOut"  class="form">
+                                <p>Please click here to logout.</p> 
+                                <button (click)="logoutClickhandler()">Logout</button>
+                              </div>   
+                               <div *ngIf="userLoggedOut"  class="form">
+                                Successfully Logout...
+                                <br/><br/><p>Click  <a (click)="loginClickhandler()"> here</a> to Login</p>
+                                </div>
+                </div>
+
+                </div>
+            </div> <!-- /container -->       
+</section>

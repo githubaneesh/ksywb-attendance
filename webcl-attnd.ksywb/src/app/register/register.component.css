@@ -1,0 +1,70 @@
+.container
+{
+  background-color: white;
+  padding: 50px 0px 0px 0px;
+}
+
+.leftCol{
+
+}
+.leftCol h1
+{
+  color: #5b5b5b;
+}
+.social-icon-con{}
+.social-icon-con ul
+{
+  padding: 0px;
+}
+.social-icon-con ul li
+{
+  list-style: none;
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin: 5px;
+}
+.form-container
+{
+  width: 60%;
+  margin: auto;
+}
+.form-control
+{
+ /* border: 0px 1px 1px 1px  !important;*/
+  border-width: 0px 0px 1px 0px;
+  border-radius: 0px;
+   padding: 0px !important;
+  -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075) !important;
+  box-shadow: inset 0 0px 0px rgba(0,0,0,.075) !important;
+ color: #1d1d1d;
+}
+.from_date
+{
+  float: left;
+}
+.from_date small
+{display: block}
+.to_date
+{
+  float: right;
+}
+.to_date small
+{display: block}
+.datepicker_container
+{
+  height:50px;
+}
+.image-uploader
+{
+  height: 135px;
+}
+
+.file-upload {
+  padding: 0px !important;
+  background-color: #f8f8f8;
+}
+.mydp
+{
+  width: 40px !important;
+}

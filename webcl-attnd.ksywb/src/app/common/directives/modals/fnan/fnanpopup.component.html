@@ -1,0 +1,32 @@
+<modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" [cssClass]="cssClass" #modal>
+       <form role="form" #f="ngForm" novalidate (ngSubmit)="onSubmit(f.valid)">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Select Leave Type</h4>
+            </modal-header>
+            <modal-body>
+                <div class="form-group">
+           <form style="padding:18px;max-width:800px;" [formGroup]="form">
+            <ng-select #select *ngIf="options.length>0"
+                    [options]="options"
+                    [multiple]="false"
+                    [noFilter]=10
+                    placeholder="Select one"
+                   formControlName="selectLeave"
+                 >
+                </ng-select>
+            </form> 
+           <!-- <select [(ngModel)]="selectedOption" #leaveselection id="leaveselector" >
+            <option *ngFor="let option of options  let i=index" [attr.data-index]="i" value= {{option.value}} class={{option.class}} >
+                {{option.label + '  ('+option.value+')'}}
+            </option>
+            </select>-->
+            </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+                <button type="submit" class="btn btn-default">Submit</button>
+               <!-- <button type="button" class="btn btn-primary"   (click)="modal.close()">Save</button>-->
+            </modal-footer>
+       </form> 
+</modal>

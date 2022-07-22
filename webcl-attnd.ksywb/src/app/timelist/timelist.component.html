@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row margin_top_10">
+    <div class="col-lg-9 col-md-9"> <a (click)="addTime()"><button class="addempBtn"><i class="fa fa-plus-square" aria-hidden="true"></i></button></a></div>
+  </div>
+  <div class="row">
+    <!--<div class="col-md-3">
+             <div class="office-box-con">MAIN OFFICE</div>
+    </div>
+    <div class="col-md-9 officeemp-box-con" >
+        -->
+    <div class="oficeDescription">
+      <h4>{{ officeDescription }}</h4>
+    </div>
+    <div class="employeedetails_con">
+      <table class="employeelist">
+        <thead>
+        <tr>
+          <th scope="col">Sl No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Time</th>
+          <th scope="col">Action</th>
+          <!-- <th scope="col">Email</th>
+            <th scope="col">Address</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let time of timeList;let i = index">
+          <td>{{ i+1 }}</td>
+          <td *ngIf="!time.edit">{{ time.name }}</td>
+          <td *ngIf="!time.edit">{{ time.time }}</td>
+
+          <td *ngIf="time.edit"> <input type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="time.name" #name="ngModel" required></td>
+          <td *ngIf="time.edit"> <input type="text" class="form-control" placeholder="Time" name="time" [(ngModel)]="time.time" #name="ngModel" required=""></td>
+
+          <td>
+            <button *ngIf="!time.edit"  (click)="updateEmp(time)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button  *ngIf="time.edit " (click)="save(time)"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+            <button *ngIf="time.edit" (click)="cancel(time,i)"><i class="fa fa-ban" aria-hidden="true"></i></button>
+            <div *ngIf="msg!=''">{{ msg }}</div>
+          </td>
+          <!--<td>{{ emp.user.email }}</td>-->
+          <!--<td>{{ emp.address }}</td>-->
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <!-- </div>-->
+  </div>
+</div>

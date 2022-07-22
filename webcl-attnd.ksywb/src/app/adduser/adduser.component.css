@@ -1,0 +1,47 @@
+.registration-container{
+        width: 80%;
+    margin: auto;
+    border: 2px solid;
+    border-radius: 10px;
+        margin-top: 30px;
+}
+.emp_icon-con
+{
+    padding: 30px;
+}
+.form-container
+{
+       padding: 20px 20px 0px 20px;
+}
+.registration-title h4{
+    font-weight: bold;
+}
+ 
+.emp-registrationform
+{
+
+}
+.employee-img
+{
+    margin: auto;
+    display: block;
+    margin-top: 100px;
+}
+select
+{
+    width: 200px;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.select-roles form
+{
+    max-width: 800px;
+    border-radius: 5px !important;
+    background-color: white;
+    padding: 0px !important;
+}
+.select-roles form ng-select div {
+
+        border-radius: 5px !important;
+}

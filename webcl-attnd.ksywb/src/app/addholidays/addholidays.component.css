@@ -1,0 +1,18 @@
+.form-container{
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid rgba(153, 153, 153, 0.73);
+    border-radius: 5px;
+}
+from-group my-date-picker >.mydp
+{
+    width: 50%;
+    margin: auto;
+    display: block;
+}
+ng-select > div > div.single {
+  border: 1px solid #cccccc !important;
+  background-color: white !important;
+}
+ 

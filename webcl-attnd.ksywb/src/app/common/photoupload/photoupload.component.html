@@ -1,0 +1,25 @@
+<input id="myFile" class="hide" type="file" (change)="onChange($event)" placeholder="Upload file..."/>
+<div class="text-danger" *ngIf="fileMessage">{{ fileMessage }}</div>
+<div class="loader" *ngIf="fileUploading"></div>
+<div class="image-holder" (click)="triggerOnChange()" >
+
+  <img id="myimage" src="../../../assets/img/avatar.png" crossorigin="anonymous"/>
+</div>
+<!--modal [hidden]="!file">
+  <form (submit)="uploadPhoto()" class="form">
+    <div>
+      <canvas id="myCanvasImage" width="300" height="400"></canvas>
+      <div class="imgContainer" >
+
+        <div class="imgContainerInner">
+          <img id="myimage" />
+
+        </div>
+      </div>
+    </div>
+    <div class="button-holder">
+      <button class="btn btn-default">Submit</button>
+      <button class="btn btn-default" (click)="cancel($event);">Cancel</button>
+    </div>
+  </form>
+</modal-->

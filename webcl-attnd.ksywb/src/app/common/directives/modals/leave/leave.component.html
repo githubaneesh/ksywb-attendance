@@ -1,0 +1,59 @@
+<modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" [cssClass]="cssClass" #modal>
+         <form role="form" #f="ngForm" novalidate (ngSubmit)="onSubmit(f.valid)">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Add Attendance</h4>
+            </modal-header>
+            <modal-body>
+            <div class="form-group">
+                <label>Select Employee</label>
+             <form style="padding:18px;max-width:800px;" [formGroup]="form">
+                    <ng-select *ngIf="arr_emp.length>0"
+                            [options]="arr_emp"
+                            [multiple]="false"
+                            [noFilter]=10
+                            placeholder="Select Employee"
+                            formControlName="selectEmployee"  
+                            (opened)="onEmployeeSelectionOpened()"
+                            (closed)="onEmployeeSelectionClosed()"
+                            (selected)="onEmployeeSelectionSelected($event)"
+                            (deselected)="onEmployeeSelectionDeselected($event)"                          
+                        >
+                        </ng-select>
+              </form> 
+            </div>
+           <div class="form-group">
+                  <label>Select Leave</label>
+                    <form style="padding:18px;max-width:800px;" [formGroup]="form">
+                    <ng-select *ngIf="arr_leaves.length>0"
+                            [options]="arr_leaves"
+                            [disabled]="disableLeave"
+                            [multiple]="false"
+                            [noFilter]=10
+                            placeholder="Select Leave"
+                            formControlName="selectLeave"  
+                            (selected)="leaveSelected($event)"                           
+                        >
+                    </ng-select>
+                    </form> 
+            </div>
+            <div>
+                <div> <label>Select start date</label></div>
+                 <div>
+                  <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onStartDateChanged('from',$event)"></my-date-picker>
+                 </div>
+          </div>
+          <div>
+                <div> <label>Select end date</label></div>
+                 <div>
+                  <my-date-picker [options]="myDatePickerOptions" (dateChanged)="onEndDateChanged('from',$event)"></my-date-picker>
+                 </div>
+          </div>
+             </modal-body>
+            <modal-footer>
+                <label>{{strmessage}}</label>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </modal-footer>
+      </form>
+</modal>

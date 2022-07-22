@@ -1,0 +1,94 @@
+<section id="addemployee" class="sections lightbg">
+  <div class="container padding-top-20">
+
+    <div class="registration-container">
+      <div class="row">
+        <div class="col-md-5 col-lg-5 emp_icon-con">
+          <img class="employee-img" src="../assets/img/user.png">
+          <div class="alert">
+            <h4>{{strAlertMessage}}</h4>
+          </div>
+        </div>
+        <div class="col-md-7 col-lg-7">
+
+
+          <div class="form-container">
+            <div class="registration-title">
+              <!-- <img src="../assets/img/emp-icon.png">-->
+              <h4>ADD EMPLOYEE</h4>
+            </div>
+
+            <form role="form" #f="ngForm" novalidate (ngSubmit)="onSubmit(f.valid)">
+
+              <div class="form-group"> <!--Name-->
+
+                <input type="text" class="form-control" placeholder="Name"
+                       name="name" [(ngModel)]="employee.name"
+                       #name="ngModel" required>
+                       <label class="namewarning"></label>
+                <!--<small [hidden]="name.valid || (name.pristine && !f.submitted)" class="text-danger">
+                  Name is required .
+                </small>-->
+                <!--<pre>{{name.errors | json}}</pre>-->
+              </div>
+              <div class="form-group"> <!--Name-->
+
+                <input type="text" class="form-control" placeholder="Emp Id"
+                       name="userid" [(ngModel)]="employee.userid"
+                       #name="ngModel">
+                <!--<small [hidden]="name.valid || (name.pristine && !f.submitted)" class="text-danger">
+                  Name is required .
+                </small>-->
+                <!--<pre>{{name.errors | json}}</pre>-->
+              </div>
+              <div class="form-group"><!--Emplloyee No-->
+                <input type="text" class="form-control" placeholder="Employee Designation"
+                       name="employeedesig" [(ngModel)]="employee.designation"
+                       #employeedesig="ngModel" required >
+                        <label class="desigwarning"></label>
+               <!--<small [hidden]="employeedesig.valid || (employeedesig.pristine && !f.submitted)" class="text-danger">
+                  Employee Designation is required .
+                </small>-->
+                <!--<pre>{{name.errors | json}}</pre>-->
+              </div>
+             <div class="form-group select-roles">
+
+                              <form style="padding:18px;max-width:800px;" [formGroup]="form">
+                                <ng-select
+                                        [options]="offices"
+                                        [multiple]="false"
+                                        [noFilter]=10
+                                        placeholder="Select Office"
+                                        formControlName="selectOffice"
+                                        (selected)="officeSelected($event)"
+                                    >
+                                    </ng-select>
+                                </form>
+              </div>
+              <div class="form-group">
+                <div class="text-danger">{{ strMessage }}</div>
+                </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-default">Submit</button>
+                <button class="btn btn-default" (click)="cancelBtnclickhandler()">Cancel</button>
+              </div>
+
+
+            </form>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+</section>
+
+<alert-popup   (modalClosed)="alertModelClosed($event)"></alert-popup>
+

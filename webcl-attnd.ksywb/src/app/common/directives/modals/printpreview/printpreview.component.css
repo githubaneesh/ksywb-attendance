@@ -1,0 +1,21 @@
+.report-header
+{
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #000000;
+}
+.report-employee
+{
+    margin-top: 20px;
+}
+.report-employee h4{font-size: 14px}
+
+.attendance_table > thead > tr > th{width: 40px;text-align: center;border: 1px solid #000000;}
+.daysanfn{height: 30px}
+.hor-line{height: 1px;background-color: #000000}
+.attend-coloumn{width:28px;display: inline-block;float: left;border: 1px solid #000000;text-align: center}
+.border_top{border-top:1px solid #000000 }
+.status h4{margin: 5px 0px;}
+.signature{margin-top: 50px;text-align: right;margin-bottom: 50px;margin-right: 50px;}
+.leavesummary{}
+.leavesummary h4{margin: 5px 0px 20px;}

@@ -1,0 +1,32 @@
+ <section id="features" class="sections lightbg">
+            <div class="container text-center">
+                <!-- Example row of columns -->
+                <div class="row">
+
+                <div class="login-page">
+                <div class="form">
+                    <form #f="ngForm" novalidate (ngSubmit)="Submit(f.valid)" class="login-form" >
+                 
+                        <input type="text" class="form-control" placeholder="Mobile"
+                        name="mobile" [(ngModel)]="user.mobile"
+                        #mobile="ngModel" required>
+                        <small [hidden]="mobile.valid || (mobile.pristine && !f.submitted)" class="text-danger">
+                        Mobile Number is required .
+                        </small>
+
+                        <input type="password" class="form-control" placeholder="password"
+                        name="password" [(ngModel)]="user.password"
+                        #password="ngModel" required>
+                        <small [hidden]="password.valid || (password.pristine && !f.submitted)" class="text-danger">
+                            Password is required .
+                        </small>
+                        <button type="submit" class="btn btn-default">Login</button>
+                    <!--<p class="message">Not registered? <a href="#">Create an account</a></p>-->
+                    </form>
+                    {{error}}
+                </div>
+                </div>
+
+                </div>
+            </div> <!-- /container -->       
+        </section>

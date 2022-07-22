@@ -1,0 +1,33 @@
+.account-con
+{
+    background-color: #d9edf7;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    /*margin: 40px 20px 20px 20px;
+    padding: 10px;*/
+     color: #31708f;
+}
+.icon-con
+{
+        width: 40px;
+    height: 40px;
+    display: inline-block;
+    float: left;
+   
+}
+.label-con
+{
+   display: inline-block;
+    float: left;
+    padding-left: 10px;
+}
+.details-con
+{
+    padding-left: 50px;
+}
+.form-container
+{
+    padding: 10px 20px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}

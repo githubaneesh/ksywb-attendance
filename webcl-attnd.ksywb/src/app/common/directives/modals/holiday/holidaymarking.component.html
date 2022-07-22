@@ -1,0 +1,69 @@
+<modal [animation]="animation" [keyboard]="keyboard" [backdrop]="backdrop" (onClose)="closed()" (onDismiss)="dismissed()"
+        (onOpen)="opened()" [cssClass]="cssClass" #modal>
+      <!--  <form #modalForm="ngForm">
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Select</h4>
+            </modal-header>
+            <modal-body>
+            <div class="form-group">
+            <form style="padding:18px;max-width:800px;" [formGroup]="form">
+            <ng-select
+                    [options]="HDayoptions"
+                    [multiple]="false"
+                     [noFilter]=10
+                    placeholder="Select one"
+                formControlName="selectSingle"
+                    [allowClear]="true"
+                >
+                </ng-select>
+            </form>
+            </div>
+            <div class="">
+                <input type="text" class="form-control" placeholder="Holiday name"
+                       name="hname" [(ngModel)]="holiday.name"
+                       #hname="ngModel" required>
+            </div>
+
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+                <button type="button" class="btn btn-primary" [disabled]="!modalForm.valid" (click)="modal.close()">Save</button>
+            </modal-footer>
+        </form>-->
+         <form role="form" #f="ngForm" novalidate (ngSubmit)="onSubmit(f.valid)">
+             <modal-header [show-close]="true">
+                <h4 class="modal-title">Add holiday</h4>
+             </modal-header>
+             <modal-body>
+                    <div class="form-group"> <!--Name-->
+
+                        <input type="text" class="form-control" placeholder="Holiday name"
+                            name="hname" [(ngModel)]="holiday.name"
+                            #hname="ngModel" required>
+                        <small [hidden]="hname.valid || (hname.pristine && !f.submitted)" class="text-danger">
+                            Holiday Name is required .
+                        </small>
+                        <!--<pre>{{name.errors | json}}</pre>-->
+                    </div>
+                    <div>
+                        <form style="padding:18px;max-width:800px;" [formGroup]="form">
+                            <ng-select
+                                    [options]="HDayoptions"
+                                    [multiple]="false"
+                                    [noFilter]=10
+                                    placeholder="Select one"
+                                formControlName="selectSingle"
+                                    
+                                >
+                                </ng-select>
+                        </form>
+                        </div>
+             </modal-body>
+             <modal-footer>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+                </div>
+             </modal-footer>
+            </form>
+</modal>

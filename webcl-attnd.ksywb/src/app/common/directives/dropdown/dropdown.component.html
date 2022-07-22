@@ -1,0 +1,3 @@
+<select  [(ngModel)]="selectedOption" #selectorEl  (change)="changedOption($event)">
+<option class="optionlist" *ngFor="let option of optionList; let i=index" [attr.data-index]="i" id="{{'option'+i}}" value={{option.value}}>{{option.label}}</option>
+</select>

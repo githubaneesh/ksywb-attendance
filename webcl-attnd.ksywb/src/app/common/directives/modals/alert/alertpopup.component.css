@@ -1,0 +1,14 @@
+select
+{
+    width: 100%;
+    height: 40px;
+}
+select option
+{
+    font-size: 18px;
+    width: 100% !important;
+}
+.body-left-col h4
+{
+    text-align: right;
+}

@@ -1,0 +1,1 @@
+export * from './addholidays.component';
